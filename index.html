@@ -2,88 +2,147 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bar Cafetería Corb Marí – Platja de Palma</title>
   <meta name="description" content="Tu rincón de café y tapas en Platja de Palma. Abiertos todos los días hasta las 00:00. Reserva por WhatsApp." />
   <style>
     :root{
       --bg:#fffaf5;
       --ink:#1f1f1f;
-      --muted:#6b6b6b;
-      --brand:#3b3b3b;
-      --accent:#7a4d2a; /* tono café */
+      --muted:#686868;
+      --accent:#7a4d2a;     /* tono café */
       --card:#ffffff;
       --shadow:0 6px 20px rgba(0,0,0,.08);
       --radius:16px;
       --max:1100px;
+      --pad:20px;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;color:var(--ink);background:var(--bg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif}
+    html,body{margin:0;background:var(--bg);color:var(--ink);
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif}
+    h1{font-size:clamp(2rem,6vw,3rem);margin:.25rem 0 .6rem}
+    h2{font-size:clamp(1.35rem,4.5vw,2rem);margin:0 0 14px}
     a{color:var(--accent);text-decoration:none}
     img{max-width:100%;display:block}
-    .wrap{max-width:var(--max);margin:auto;padding:0 20px}
+    .wrap{max-width:var(--max);margin:auto;padding:0 var(--pad)}
+
+    /* ---------- HERO ---------- */
     header{
-      position:relative;overflow:hidden;color:#fff;background:linear-gradient(120deg, rgba(0,0,0,.55), rgba(0,0,0,.35)), url('https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+      position:relative;overflow:hidden;color:#fff;
+      background:
+        linear-gradient(120deg, rgba(0,0,0,.55), rgba(0,0,0,.35)),
+        url('https://images.unsplash.com/photo-1525610553991-2bede1a236e2?q=80&w=1600&auto=format&fit=crop')
+        center/cover no-repeat;
     }
-    .hero{padding:90px 0}
-    .badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);padding:6px 10px;border-radius:999px;font-size:.9rem;margin-bottom:10px}
-    h1{font-size:clamp(2rem,4vw,3rem);margin:.2rem 0 .6rem}
-    .sub{max-width:700px;color:#f0f0f0}
+    .hero{
+      min-height:60vh; display:flex; align-items:flex-end;
+      padding:clamp(56px,8vw,100px) 0 clamp(24px,5vw,40px);
+    }
+    .badge{
+      display:inline-block;background:rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.35);
+      padding:6px 10px;border-radius:999px;font-size:.9rem;margin-bottom:10px;
+      backdrop-filter:saturate(120%) blur(2px)
+    }
+    .sub{
+      max-width:720px;color:#f6f6f6;text-shadow:0 1px 2px rgba(0,0,0,.35)
+    }
+
+    /* CTA buttons */
     .cta{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
     .btn{
-      display:inline-flex;align-items:center;gap:10px;
-      background:#25D366;color:#111;padding:12px 18px;border-radius:12px;
-      font-weight:700;box-shadow:var(--shadow)
+      display:inline-flex;justify-content:center;align-items:center;gap:10px;
+      background:#25D366;color:#111;padding:14px 18px;border-radius:12px;
+      font-weight:700;box-shadow:var(--shadow);border:0
     }
-    .btn.secondary{background:#fff;color:#222;border:1px solid #ddd}
+    .btn.secondary{background:#fff;color:#222;border:1px solid #e6e6e6}
+
+    /* ---------- LAYOUT ---------- */
+    section{padding:48px 0}
     .grid{display:grid;gap:24px}
-    section{padding:56px 0}
-    h2{font-size:clamp(1.4rem,2.8vw,2rem);margin:0 0 14px}
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-    .card{
-      background:var(--card);border-radius:var(--radius);padding:18px;border:1px solid #eee;box-shadow:var(--shadow)
-    }
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;border:1px solid #eee;box-shadow:var(--shadow)}
     .card h3{margin:.2rem 0 .6rem;font-size:1.1rem}
     .muted{color:var(--muted)}
+
+    /* SOBRE NOSOTROS centrado en móvil/escritorio */
+    .about-wrap{
+      max-width:840px;
+      margin:auto;
+      text-align:center;
+    }
+    .about-wrap p{margin:0 auto 1rem;line-height:1.65}
+    .about-cards{
+      margin-top:20px;
+      display:grid;gap:18px;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    }
+    .about-cards .card{text-align:center}
+
+    /* Menú */
     .menu-list{margin:0;padding:0;list-style:none}
-    .menu-list li{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed #e9e2db}
-    .menu-list li span{color:var(--muted)}
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+    .menu-list li{
+      display:flex;justify-content:space-between;gap:12px;
+      padding:12px 0;border-bottom:1px dashed #e9e2db
+    }
+    .menu-list li span{color:var(--muted);white-space:nowrap}
+
+    /* Galería */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
     .gallery img{border-radius:12px;height:180px;object-fit:cover}
-    .info{
-      display:grid;gap:24px;grid-template-columns:1.2fr .8fr;
-    }
-    .map{
-      aspect-ratio:4/3;border:0;width:100%;border-radius:14px;box-shadow:var(--shadow)
-    }
+
+    /* Info + mapa */
+    .info{display:grid;gap:24px;grid-template-columns:1.2fr .8fr}
+    .map{aspect-ratio:4/3;border:0;width:100%;border-radius:14px;box-shadow:var(--shadow)}
+
     footer{padding:28px 0;color:var(--muted);text-align:center}
-    @media (max-width:860px){.info{grid-template-columns:1fr}}
+
+    /* ---------- MOBILE TWEAKS ---------- */
+    @media (max-width:860px){
+      .info{grid-template-columns:1fr}
+      .gallery img{height:160px}
+      .hero{min-height:54vh}
+    }
+    @media (max-width:560px){
+      :root{--pad:16px}
+      .wrap{padding:0 var(--pad)}
+      .badge{font-size:.85rem}
+      .sub{font-size:.95rem}
+      .cta .btn{flex:1 1 100%; padding:15px 16px}   /* botones full width */
+      .card{padding:16px}
+      .menu-list li{flex-wrap:wrap}
+      .menu-list li span{width:100%;text-align:right}
+      .hero{padding:64px 0 24px;min-height:50vh}
+      /* FAB WhatsApp (opcional) */
+      .wa-fab{position:fixed;right:16px;bottom:16px;background:#25D366;color:#111;
+        padding:14px 16px;border-radius:999px;font-weight:800;box-shadow:var(--shadow);z-index:30}
+    }
   </style>
 </head>
 <body>
 
 <header>
   <div class="wrap hero">
-    <div class="badge">Cafés · Tapas · Platja de Palma</div>
-    <h1>Bar Cafetería Corb Marí</h1>
-    <p class="sub">Tu rincón de café y tapas en Platja de Palma. Ambiente cercano, productos de calidad y cocina sencilla con sabor. Abiertos todos los días hasta las 00:00.</p>
-    <div class="cta">
-      <a class="btn" href="https://wa.me/34628673242?text=Hola%20Corb%20Mar%C3%AD,%20quisiera%20reservar%20una%20mesa" target="_blank" rel="noopener">Reservar por WhatsApp</a>
-      <a class="btn secondary" href="#menu">Ver carta</a>
+    <div>
+      <div class="badge">Cafés · Tapas · Platja de Palma</div>
+      <h1>Bar Cafetería Corb Marí</h1>
+      <p class="sub">Tu rincón de café y tapas en Platja de Palma. Ambiente cercano, productos de calidad y cocina sencilla con sabor. Abiertos todos los días hasta las 00:00.</p>
+      <div class="cta">
+        <a class="btn" href="https://wa.me/34628673242?text=Hola%20Corb%20Mar%C3%AD,%20quisiera%20reservar%20una%20mesa" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+        <a class="btn secondary" href="#menu">Ver carta</a>
+      </div>
     </div>
   </div>
 </header>
 
 <main class="wrap">
-  <!-- Sobre nosotros -->
+  <!-- SOBRE NOSOTROS centrado -->
   <section id="about">
-    <div class="grid" style="grid-template-columns:1.4fr .6fr;align-items:center">
-      <div>
-        <h2>De barrio, como nos gusta</h2>
-        <p>En Corb Marí nos gusta lo simple: buen café, tapas con producto local y un trato cercano. Estamos en <strong>Ctra. Militar 215, Platja de Palma (Illes Balears)</strong>. Te esperamos con desayunos, bocadillos y platos combinados.</p>
-        <p class="muted">Horario: todos los días, de 08:00 a 10:00 · Tel: <a href="tel:+34628673242">628 67 32 42</a></p>
-      </div>
-      <div class="cards">
+    <div class="about-wrap">
+      <h2>De barrio, como nos gusta</h2>
+      <p>En Corb Marí nos gusta lo simple: buen café, tapas con producto local y un trato cercano. Estamos en <strong>Ctra. Militar 215, Platja de Palma (Illes Balears)</strong>. Te esperamos con desayunos, bocadillos y platos combinados.</p>
+      <p class="muted">Horario: todos los días, de 08:00 a 00:00 · Tel: <a href="tel:+34628673242">628 67 32 42</a></p>
+
+      <div class="about-cards">
         <div class="card">
           <h3>Para llevar</h3>
           <p class="muted">Café, bocadillos y postres listos para llevar.</p>
@@ -96,14 +155,14 @@
     </div>
   </section>
 
-  <!-- Carta resumida -->
+  <!-- CARTA -->
   <section id="menu">
-    <h2>Carta destacada</h2>
-    <div class="grid" style="grid-template-columns:repeat(2,1fr)">
+    <h2 style="text-align:center">Carta destacada</h2>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
       <div class="card">
         <h3>Desayunos & Café</h3>
         <ul class="menu-list">
-          <li><b>Café espresso</b> <span>10,50 €</span></li>
+          <li><b>Café espresso</b> <span>1,50 €</span></li>
           <li><b>Café con leche</b> <span>1,80 €</span></li>
           <li><b>Tostada con tomate</b> <span>2,50 €</span></li>
           <li><b>Croissant a la plancha</b> <span>2,20 €</span></li>
@@ -119,14 +178,11 @@
         </ul>
       </div>
     </div>
-    <div class="cta" style="margin-top:14px">
-      <a class="btn" href="https://wa.me/34628673242?text=Hola,%20%C2%BFme%20mandas%20la%20carta%20completa%20de%20Corb%20Mar%C3%AD?" target="_blank" rel="noopener">Pedir carta completa</a>
-    </div>
   </section>
 
-  <!-- Galería -->
+  <!-- GALERÍA -->
   <section id="galeria">
-    <h2>Un vistazo</h2>
+    <h2 style="text-align:center">Un vistazo</h2>
     <div class="gallery">
       <img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?q=80&w=1200&auto=format&fit=crop" alt="Café espresso">
       <img src="https://images.unsplash.com/photo-1498654896293-37aacf113fd9?q=80&w=1200&auto=format&fit=crop" alt="Tostadas y bollería">
@@ -135,7 +191,7 @@
     </div>
   </section>
 
-  <!-- Información y mapa -->
+  <!-- INFO + MAPA -->
   <section id="contacto">
     <div class="info">
       <div class="card">
@@ -150,17 +206,7 @@
       </div>
       <iframe class="map"
         src="https://www.google.com/maps?q=Ctra.+Militar+215,+Platja+de+Palma,+Illes+Balears&output=embed"
-        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa Corb Marí">
-      </iframe>
-    </div>
-  </section>
-
-  <!-- CTA final -->
-  <section>
-    <div class="card" style="text-align:center">
-      <h2>¿Nos tomamos un café?</h2>
-      <p class="muted">Escríbenos por WhatsApp y te guardamos mesa.</p>
-      <a class="btn" href="https://wa.me/34628673242?text=Hola%20Corb%20Mar%C3%AD,%20quiero%20pasar%20hoy" target="_blank" rel="noopener">WhatsApp 628 67 32 42</a>
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa Corb Marí"></iframe>
     </div>
   </section>
 </main>
@@ -170,6 +216,9 @@
     © <span id="y"></span> Bar Cafetería Corb Marí · Platja de Palma
   </div>
 </footer>
+
+<!-- Botón flotante (visible en móvil por CSS; borra si no lo quieres) -->
+<a class="wa-fab" href="https://wa.me/34628673242?text=Hola%20Corb%20Mar%C3%AD,%20quisiera%20informaci%C3%B3n" aria-label="WhatsApp">WhatsApp</a>
 
 <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
 </body>
